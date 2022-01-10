@@ -1,0 +1,14 @@
+[Unit]
+Description=cloud-torrent daemon
+After=network.target syslog.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/cloud-torrent -p 8080 -a "admin:password" -c /etc/cloud-torrent/%i.json -l
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+RestartPreventExitStatus=23
+
+[Install]
+WantedBy=multi-user.target

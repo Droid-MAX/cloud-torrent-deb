@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Shutting down cloud-torrent daemon service."
+if [[ -f "/lib/systemd/system/cloud-torrent.service" ]] || [[ -f "/etc/systemd/system/cloud-torrent.service" ]]; then
+    systemctl stop cloud-torrent
+elif [[ -f "/etc/init.d/cloud-torrent" ]]; then
+    service cloud-torrent stop
+fi
